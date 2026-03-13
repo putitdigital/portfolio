@@ -28,7 +28,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe skill cards and education cards
-document.querySelectorAll('.skill-category, .education-card, .timeline-content').forEach(el => {
+document.querySelectorAll('.skill-category, .education-card, .timeline-content, .reference-card').forEach(el => {
     el.style.opacity = '0';
     observer.observe(el);
 });

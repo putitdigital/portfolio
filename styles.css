@@ -1,14 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:600&display=swap");
+@-webkit-keyframes active {
+  from {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 10px 0px rgba(0, 0, 250, 0.6);
+  }
+  to {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+  }
+}
+@keyframes active {
+  from {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 10px 0px rgba(0, 0, 250, 0.6);
+  }
+  to {
+    box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+  }
+}
 /* Root Variables */
 :root {
     --primary-color: #1a1a1a;
     --secondary-color: #4b64a2;
     --dark-bg: #000000;
-    --light-bg: #ffffff;
+    --light-bg: #f8f8f8;
     --text-dark: #1a1a2e;
     --text-light: #f5f5f5;
     --accent-color: #27aae1;
     --border-color: #e0e0e0;
     --transition: all 0.3s ease;
+    --text-primary-color:white;
 }
 
 /* Global Styles */
@@ -42,7 +60,7 @@ body {
 /* Navigation */
 .navbar {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
+    color: var(--text-primary-color);
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -69,7 +87,7 @@ body {
 }
 
 .nav-links a {
-    color: white;
+    color: var(--text-primary-color);
     text-decoration: none;
     transition: var(--transition);
     padding: 0.5rem 0;
@@ -80,11 +98,82 @@ body {
     border-bottom-color: var(--accent-color);
 }
 
+button,
+[role=button] {
+  -webkit-appearance: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+  background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+  border-radius: 30px;
+  border: 1px solid #8F9092;
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 0 #CECFD1;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #606060;
+  text-shadow: 0 1px #fff;
+}
+button::-moz-focus-inner,
+[role=button]::-moz-focus-inner {
+  border: 0;
+}
+button > *,
+[role=button] > * {
+  transition: transform 0.2s ease;
+}
+button:hover:not([disabled]),
+[role=button]:hover:not([disabled]) {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+}
+button:hover:not([disabled]) > *,
+[role=button]:hover:not([disabled]) > * {
+  transform: scale(0.975);
+}
+button:focus:not(:active),
+[role=button]:focus:not(:active) {
+  -webkit-animation: active 0.9s alternate infinite;
+          animation: active 0.9s alternate infinite;
+  outline: none;
+}
+button:active:not([disabled]),
+[role=button]:active:not([disabled]) {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+button:active:not([disabled]) > *,
+[role=button]:active:not([disabled]) > * {
+  transform: scale(0.95);
+}
+button:disabled,
+[role=button]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+button.icon,
+[role=button].icon {
+  width: 50px;
+}
+button.icon svg,
+[role=button].icon svg {
+  margin-top: 3px;
+  width: 30px;
+  height: 30px;
+}
+
 /* Theme toggle button */
 .theme-toggle {
     background: transparent;
     border: none;
-    color: white;
+    color: var(--text-primary-color);
     font-size: 1.2rem;
     cursor: pointer;
     margin-left: 1rem;
@@ -110,7 +199,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: var(--transition);
-    color: white;
+    color: var(--text-primary-color);
 }
 
 .btn-download-nav {
@@ -131,8 +220,9 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
+    /* background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); */
+    background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+    color: var(--text-primary-color);
     padding: 100px 0;
     text-align: center;
     min-height: 500px;
@@ -190,12 +280,12 @@ body {
 
 .btn-secondary {
     background-color: transparent;
-    color: white;
+    color: var(--text-primary-color);
     border: 2px solid white;
 }
 
 .btn-secondary:hover {
-    background-color: white;
+    background-color: var(--text-primary-color);
     color: var(--primary-color);
 }
 
@@ -287,7 +377,7 @@ h2::after {
 
 .language-tags span {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
+    color: var(--text-primary-color);
     padding: 0.5rem 1.2rem;
     border-radius: 20px;
     font-size: 0.95rem;
@@ -296,7 +386,7 @@ h2::after {
 
 /* Skills Section */
 .skills {
-    background-color: white;
+    background-color: var(--text-primary-color);
 }
 
 .skills-grid {
@@ -438,7 +528,7 @@ h2::after {
 
 /* Education Section */
 .education {
-    background-color: white;
+    background-color: var(--text-primary-color);
 }
 
 .education-grid {
@@ -449,15 +539,23 @@ h2::after {
 
 .education-card {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
+    color: var(--text-primary-color);
     padding: 2rem;
     border-radius: 15px;
     transition: var(--transition);
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* position: absolute; */
+    /* top: 40px; */
+    /* left: 40px; */
+    border: 1px solid #999;
+
+    /* width: 400px; */
+    /* height: 400px; */
 }
 
-.education-card::before {
+
+/* .education-card::before {
     content: '';
     position: absolute;
     top: -50%;
@@ -467,7 +565,7 @@ h2::after {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     transition: var(--transition);
-}
+} */
 
 .education-card:hover::before {
     top: -25%;
@@ -480,7 +578,7 @@ h2::after {
 }
 
 .education-card h3 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
     position: relative;
     z-index: 1;
@@ -516,11 +614,99 @@ h2::after {
     position: relative;
     z-index: 1;
 }
+#banner {
+  background: #333;
+  line-height: 60px;
+  font-size: 24px;
+  padding: 0px 20px;
+  position: absolute;
+  color: var(--text-primary-color);
+  width: 350px;
+  height: 60px;
+  top: 20px;
+  left: -30px;
+}
+
+#banner:before,
+#banner:after {
+  
+  width: 0px;
+  height: 0px;
+  content: '';
+  display: block;
+  position: absolute;
+  
+}
+
+#banner:before {
+  bottom: -30px;
+  left: 0px;
+  border-top: 0px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-right: 30px solid black;
+}
+
+#banner:after {
+  top: 0px;
+  right: -30px;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid #333;
+}
+
+/* References Section */
+.references {
+    background-color: #f8f9ff;
+}
+
+.references-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.reference-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+    text-align: center;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.reference-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+}
+
+.reference-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.reference-card .position {
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.reference-card .contact-info a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.reference-card .contact-info a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
 
 /* Contact Section */
 .contact {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: white;
+    color: var(--text-primary-color);
     text-align: center;
 }
 
@@ -566,7 +752,7 @@ h2::after {
 }
 
 .contact-item a {
-    color: white;
+    color: var(--text-primary-color);
     text-decoration: none;
     transition: var(--transition);
 }
@@ -590,7 +776,7 @@ h2::after {
     justify-content: center;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    color: white;
+    color: var(--text-primary-color);
     transition: var(--transition);
     font-size: 1.3rem;
 }
@@ -603,7 +789,7 @@ h2::after {
 /* Footer */
 .footer {
     background-color: var(--text-dark);
-    color: white;
+    color: var(--text-primary-color);
     text-align: center;
     padding: 2rem 0;
     /* margin-top: 3rem; */
