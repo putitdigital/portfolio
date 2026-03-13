@@ -57,7 +57,6 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
 }
-
 body {
     font-family: var(--font-primary);
     font-weight: 500;
