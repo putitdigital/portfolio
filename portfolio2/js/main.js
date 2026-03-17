@@ -151,7 +151,7 @@ function initNavigation() {
     });
     
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('scroll', updateHeaderOnScroll);
+    //window.addEventListener('scroll', updateHeaderOnScroll);
 }
 
 function handleScroll() {
@@ -185,14 +185,14 @@ function updateActiveNavLink(clickedLink, sectionId = null) {
     });
 }
 
-function updateHeaderOnScroll() {
-    const header = document.querySelector('.main-header');
-    if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-    } else {
-        header.classList.remove('scrolled');
-    }
-}
+// function updateHeaderOnScroll() {
+//     const header = document.querySelector('.main-header');
+//     if (window.scrollY > 50) {
+//         header.classList.add('scrolled');
+//     } else {
+//         header.classList.remove('scrolled');
+//     }
+// }
 
 function initScrollEffects() {
     const observerOptions = {
@@ -273,7 +273,8 @@ function generateParticles() {
     const particlesContainer = document.getElementById('particles');
     if (!particlesContainer) return;
     
-    const codeSymbols = ['{', '}', '[', ']', '(', ')', '<', '>', '/', '*', '=', '+', '-', ';', ':', '&', '|', '%', '$', '#', '@'];
+    
+    const codeSymbols = ['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Angular', 'React', 'Node.js', 'Express.js', 'PHP', 'C#', 'Python', 'Java', 'SQL'];
     const particleCount = 20;
     
     for (let i = 0; i < particleCount; i++) {
