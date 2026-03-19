@@ -22,7 +22,6 @@ function initializeApp() {
     updateThemeUI();
     AppState.isLoaded = true;
 }
-
 function loadPreferences() {
     const savedLang = localStorage.getItem('portfolio-lang');
     const savedTheme = localStorage.getItem('portfolio-theme');
@@ -576,7 +575,7 @@ function initTimelineAnimations() {
 }
 
 function initProjectAnimations() {
-    const projectCards = document.querySelectorAll('.project-card');
+    const projectCards = document.querySelectorAll('.clicked-card');
     projectCards.forEach((card, index) => {
         inView(card, () => {
             if (typeof anime !== 'undefined') {
@@ -603,6 +602,18 @@ function initProjectAnimations() {
         card.addEventListener('mouseleave', () => {
             if (typeof anime !== 'undefined') {
                 anime({ targets: card, scale: [1.02, 1], duration: 300, easing: 'easeOutQuad' });
+            }
+        });
+        card.addEventListener('click', () => {
+            const link = card.querySelector('a'); // find <a> inside card
+    
+            if (link) {
+                const href = link.getAttribute('href');
+                console.log('Project clicked:', href);
+
+                window.location.href = href; // redirect
+            } else {
+                console.warn('No link found in this project card');
             }
         });
     });
@@ -763,6 +774,53 @@ function initSmoothScroll() {
         });
     });
 }
+
+let currentSlide = 0;
+let autoSlide;
+
+const slider = document.querySelector(".ecommerce-card .project-slider");
+const slides = document.querySelectorAll(".ecommerce-card .project-slide");
+const dots = document.querySelectorAll(".ecommerce-card .dot");
+
+function updateSlider() {
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    slides.forEach((slide, index) => {
+        slide.classList.toggle("active", index === currentSlide);
+    });
+
+    dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === currentSlide);
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateSlider();
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateSlider();
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+}
+function startAutoSlide() {
+    autoSlide = setInterval(nextSlide, 4000);
+}
+function stopAutoSlide() {
+    clearInterval(autoSlide);
+}
+
+const card = document.querySelector(".ecommerce-card");
+
+card.addEventListener("mouseenter", stopAutoSlide);
+card.addEventListener("mouseleave", startAutoSlide);
+
+startAutoSlide();
 
 window.Animations = {
     initParallax,

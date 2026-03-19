@@ -1,0 +1,47 @@
+:root {
+    --global-primary: #48ff00;
+    --global-secondary: #00fa9a;
+
+    --btn-primary-color:yellow;
+    --btn-secondary-color:red;
+    --btn-primary-background:#020617;
+    --btn-secondary-background:#67e8f9;
+
+    --body-primary-background:black;
+    --body-secondary-background:red;
+
+    --text-primary: #bb00ff;
+    --text-secondary: black;
+    --text-muted: #94a3b8;
+
+    --card-primary-background:rgba(75, 75, 75, 0.737);
+    --card-secondary-background:yellow;
+
+    --border-primary-color:red;
+    --border-secondary-color:yellow;
+ 
+    --gradient-1: linear-gradient(135deg, #FBFADA 0%, #ADBC9F 50%, #FBFADA 100%);
+    --gradient-2: linear-gradient(135deg, #67e8f9 0%, #a78bfa 50%, #fbbf24 100%);
+    --gradient-3: linear-gradient(135deg, #86efac 0%, #67e8f9 100%);
+
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.2);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.3);
+    --shadow-xl: 0 20px 25px rgba(0,0,0,0.4);
+    --shadow-glow: 0 0 30px rgba(192,132,252,0.3);
+
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+
+    --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-code: 'Fira Code', monospace;
+
+    --radius:10px;
+}
