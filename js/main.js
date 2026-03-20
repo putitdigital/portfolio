@@ -787,27 +787,75 @@ function initChatBolt() {
     function getBotReply(rawText) {
         const text = rawText.toLowerCase();
 
-        if (text.includes('skill') || text.includes('tech') || text.includes('stack')) {
-            return 'Sithembiso focuses on JavaScript, Angular, React, Node.js, Express, and MySQL, with strong UI/UX and automation experience.';
+        if (text.includes('frontend') || text.includes('front-end') || text.includes('front end')) {
+            return 'Frontend skills: HTML & CSS, Angular, React.js, JavaScript (ES6+), Responsive Design, Laravel, SCSS, RxJS, Angular Material, Bootstrap, and Google Web Designer.';
         }
 
-        if (text.includes('experience') || text.includes('work') || text.includes('years')) {
-            return 'He has 5+ years of experience, including full-stack development at TBWA/SA with front-end, back-end, and automation workflows.';
+        if (text.includes('backend') || text.includes('back-end') || text.includes('back end') || text.includes('server')) {
+            return 'Backend skills: Node.js, Express.js, PHP (Laravel), C# & .NET Core, Entity Framework, Sequelize ORM, JWT Authentication, REST APIs.';
+        }
+
+        if (text.includes('design') || text.includes('adobe') || text.includes('photoshop') || text.includes('figma')) {
+            return 'Design tools: Adobe Photoshop, Illustrator, InDesign, After Effects, Spark AR Studio, Google Web Designer, Figma, and Adobe XD — with scripting automation via Adobe UXP.';
+        }
+
+        if (text.includes('skill') || text.includes('tech') || text.includes('stack') || text.includes('language') || text.includes('framework')) {
+            return 'Sithembiso\'s stack: Frontend — HTML & CSS, Angular, React.js, JavaScript, Responsive Design. Backend — Node.js, Express.js, PHP, C# & .NET Core, Entity Framework. Databases & Tools — MySQL, SQL, WordPress, Azure Cloud, GitHub. Design — Photoshop, Illustrator, InDesign, After Effects, Figma, Google Web Designer.';
+        }
+
+        if (text.includes('education') || text.includes('study') || text.includes('degree') || text.includes('university') || text.includes('qualification') || text.includes('certif')) {
+            return 'Education: Tshwane University of Technology — IT (IIS: Robotics, Software Dev, Graphic Design) 2018. Dynamic DNA — Microsoft Technology Associate, Software Dev Fundamentals (C# & .NET Core) 2019. University of the Witwatersrand JCSE — Cloud Computing (Azure) 2020. University of Cape Town — Web Design (HTML, CSS, JS & Hosting) 2020.';
+        }
+
+        if (text.includes('experience') || text.includes('work') || text.includes('job') || text.includes('career') || text.includes('tbwa') || text.includes('years')) {
+            return 'Experience: Junior to Intermediate Full-Stack Developer @ TBWA\\SA (2021–Present). Intern Full-Stack Developer @ TBWA\\SA (2020). Intern Software Developer @ MACROCOMM (2019) — Entity Framework, Laravel, MySQL. Intern Web Developer @ Softstart Business & Technology Incubator (2018).';
         }
 
         if (text.includes('project') || text.includes('portfolio') || text.includes('build')) {
-            return 'You can check the Projects section for highlighted work, including e-commerce, creative automation tooling, and banner production platforms.';
+            return 'Notable projects: E-Commerce Platform (HTML/CSS/JS + MySQL), ASP.NET E-Commerce Platform (C#), Creative Template Photoshop Plugin (Adobe UXP), and Banner Automation App (Angular 13 + Node.js + MySQL). Check the Projects section for GitHub links.';
         }
 
-        if (text.includes('contact') || text.includes('email') || text.includes('phone') || text.includes('linkedin')) {
-            return 'Use the Contact section to reach out directly by email, phone, LinkedIn, or GitHub.';
+        if (text.includes('github') || text.includes('code') || text.includes('repo')) {
+            return 'GitHub: github.com/putitdigital — source code for banner automation, e-commerce, and other projects.';
+        }
+
+        if (text.includes('contact') || text.includes('email') || text.includes('phone') || text.includes('call') || text.includes('reach') || text.includes('linkedin')) {
+            return 'Contact: Email — sithembiso72@gmail.com | Phone — +27 84 538 8953 or +27 67 225 4116 | LinkedIn — linkedin.com/in/sithembiso-sangweni-07b935113 | GitHub — github.com/putitdigital';
         }
 
         if (text.includes('cv') || text.includes('resume')) {
-            return 'Use the Download CV button in the hero or contact area to get the latest resume.';
+            return 'Use the Download CV button in the Hero or Contact section to get the latest resume.';
         }
 
-        return 'Great question. You can ask about skills, experience, projects, contact details, or CV.';
+        if (text.includes('location') || text.includes('located') || text.includes('where') || text.includes('city') || text.includes('country') || text.includes('based')) {
+            return 'Sithembiso is based in Gauteng, Johannesburg, South Africa.';
+        }
+
+        if (text.includes('relocat') || text.includes('move') || text.includes('willing to') || text.includes('remote') || text.includes('abroad') || text.includes('overseas') || text.includes('hybrid')) {
+            return 'Yes, Sithembiso is open to relocation and available for remote or hybrid work opportunities.';
+        }
+
+        if (text.includes('salary') || text.includes('rate') || text.includes('compensation') || text.includes('pay')) {
+            return 'For salary or rate enquiries, please reach out directly at sithembiso72@gmail.com or call +27 84 538 8953.';
+        }
+
+        if (text.includes('available') || text.includes('hire') || text.includes('freelance') || text.includes('contract') || text.includes('full time') || text.includes('fulltime')) {
+            return 'Sithembiso is open to full-time, contract, and freelance opportunities. Get in touch via email or LinkedIn.';
+        }
+
+        if (text.includes('about') || text.includes('who') || text.includes('tell me') || text.includes('yourself') || text.includes('sithembiso')) {
+            return 'Sithembiso Sangweni is a Full-Stack Developer & UI/UX Designer based in Johannesburg with 5+ years of experience building web applications, automation workflows, and digital experiences. He specialises in Angular, React, Node.js, and Adobe tooling.';
+        }
+
+        if (text.includes('azure') || text.includes('cloud') || text.includes('hosting')) {
+            return 'Sithembiso holds an Azure Cloud certification from University of the Witwatersrand JCSE (2020) and has hands-on hosting experience with Azure Cloud.';
+        }
+
+        if (text.includes('automat') || text.includes('scripting') || text.includes('uxp') || text.includes('banner') || text.includes('mailer')) {
+            return 'Automation is one of Sithembiso\'s specialisms — JavaScript scripting for banner & mailer production, Adobe Photoshop/Illustrator UXP scripting, and a full-stack Banner Automation App (Angular + Node/Express + MySQL).';
+        }
+
+        return 'I can answer questions about skills, experience, education, projects, contact details, location, or availability. What would you like to know?';
     }
 
     function openPanel() {
