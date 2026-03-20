@@ -1,90 +1,62 @@
 # Sithembiso Eugene Sangweni - Full Stack Developer Portfolio
 
-Welcome to my professional portfolio! I'm a **Full Stack Developer** passionate about creating elegant, innovative solutions using modern web technologies.
+This repository contains my personal portfolio site. It highlights my experience as a full-stack developer across web applications, creative tooling, automation, and UI-focused digital work.
 
-## 🚀 Features
+## Features
 
-- **Responsive Design** - Works seamlessly on all devices (desktop, tablet, mobile)
-- **Modern UI/UX** - Clean, professional aesthetic with smooth animations
-- **Interactive Navigation** - Smooth scrolling and easy navigation between sections
-- **Professional Sections**
-  - Hero introduction
-  - About me
-  - Technical skills (Frontend, Backend, Database, Design)
-  - Professional experience timeline
-  - Education credentials
-  - Contact information
+- Responsive layout for desktop, tablet, and mobile screens
+- Animated hero, skills, project, and timeline sections
+- Bilingual content support for English and Arabic
+- Theme preference support with saved local settings
+- Project showcase, experience timeline, and direct contact details
 
-## 💻 Tech Stack
+## Tech Stack
 
-**Frontend:**
 - HTML5
-- CSS3 (with CSS Grid & Flexbox)
+- CSS3
 - Vanilla JavaScript
+- Anime.js for motion effects
+- Font Awesome for icons
 
-**Technologies I Work With:**
-- React.js & Angular
-- Node.js & Express
-- PHP & Laravel
-- MySQL & SQL
-- Azure Cloud
-- C# & .NET Core
-- Design Tools: Photoshop, Illustrator, InDesign, After Effects
+## Project Structure
 
-## 📂 Project Structure
-
-```
+```text
 portfolio-Full-stack-Developer/
-├── index.html      # Main HTML file
-├── styles.css      # Complete styling
-├── script.js       # Interactive features
-└── README.md       # This file
+|- index.html
+|- README.md
+|- css/
+|  |- style.css
+|- js/
+|  |- main.js
 ```
 
-## 🎯 Quick Start
+## Quick Start
 
-1. Clone the repository:
+1. Clone the repository.
+
 ```bash
-git clone https://github.com/yourusername/portfolio-Full-stack-Developer.git
+git clone https://github.com/putitdigital/portfolio-Full-stack-Developer.git
 cd portfolio-Full-stack-Developer
 ```
 
-2. Open in VS Code and use Live Server:
-   - Install the "Live Server" VS Code extension
-   - Right-click on `index.html` → "Open with Live Server"
+2. Open `index.html` in your browser, or serve the folder with a simple static server.
 
-3. Or simply open `index.html` in your browser
+3. For local development in VS Code, Live Server works well for previewing changes.
 
-## 📬 Contact
+## Notes
 
-- **Email:** [sithembiso72@gmail.com](mailto:sithembiso72@gmail.com)
-- **Phone:**
-  - +27 84 538 8953
-  - +27 67 225 4116
-- **Location:** Johannesburg, South Africa
-- **Website:** http://putitdigital.co.za/online-CV/
-- **GitHub:** https://github.com/putitdigital
-- **LinkedIn:** https://www.linkedin.com/in/sithembiso-sangweni-07b935113
+- The contact section currently exposes direct contact methods instead of using a backend-powered form.
+- The project cards should be updated over time with real screenshots and destination links for each featured project.
 
-## 🌍 Languages
+## Contact
 
-- English
-- Zulu
-- Xhosa
-- Setswana
+- Email: [sithembiso72@gmail.com](mailto:sithembiso72@gmail.com)
+- Phone: +27 84 538 8953 / +27 67 225 4116
+- Location: Johannesburg, South Africa
+- Website: https://putitdigital.co.za/
+- GitHub: https://github.com/putitdigital
+- LinkedIn: https://www.linkedin.com/in/sithembiso-sangweni-07b935113
 
-## ✨ Features in Development
+## License
 
-- [ ] Add project showcase section
-- [ ] Integrate backend for contact form
-- [ ] Add blog/articles section
-- [ ] Implement dark mode toggle
-- [ ] Add testimonials section
-
-## 📄 License
-
-This portfolio is open source and available under the MIT License.
-
----
-
-**Created with ❤️ by Sithembiso Eugene Sangweni | 2026**
+This portfolio is available under the MIT License.
