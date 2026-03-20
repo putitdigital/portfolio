@@ -2,6 +2,8 @@ const AppState = {
     currentLang: 'en',
     currentTheme: 'dark',
     smoothScrollInitialized: false,
+    heroImagePinInitialized: false,
+    heroImagePinned: false,
     isLoaded: false
 };
 
@@ -15,6 +17,9 @@ function initializeApp() {
     initTheme();
     initScrollEffects();
     initSmoothScroll();
+    initBottomNavActiveState();
+    initPinnedHeroImage();
+    initChatBolt();
     generateParticles();
     updateLanguageUI();
     updateThemeUI();
@@ -565,7 +570,7 @@ function initParallax() {
                 const offset = Math.min(scrolled * parallaxSpeed, maxOffset);
                 
                 if (profileImage) {
-                    profileImage.style.transform = `translateY(${offset}px)`;
+                    profileImage.style.transform = AppState.heroImagePinned ? 'translateY(0)' : `translateY(${offset}px)`;
                 }
                 
                 const gridBg = document.querySelector('.code-grid-bg');
@@ -609,6 +614,245 @@ function initSmoothScroll() {
             });
         });
     });
+}
+
+function initBottomNavActiveState() {
+    const navLinks = document.querySelectorAll('.bottom-nav-link');
+    if (navLinks.length === 0) {
+        return;
+    }
+
+    const sections = Array.from(navLinks)
+        .map((link) => {
+            const targetId = link.getAttribute('href');
+            if (!targetId || !targetId.startsWith('#')) {
+                return null;
+            }
+
+            const section = document.querySelector(targetId);
+            if (!section) {
+                return null;
+            }
+
+            return { link, section };
+        })
+        .filter(Boolean);
+
+    if (sections.length === 0) {
+        return;
+    }
+
+    function setActiveLink(activeSectionId) {
+        sections.forEach(({ link, section }) => {
+            const isActive = section.id === activeSectionId;
+            link.classList.toggle('is-active', isActive);
+
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+    }
+
+    function updateActiveLink() {
+        const scrollProbe = window.scrollY + (window.innerHeight * 0.35);
+        let activeId = sections[0].section.id;
+
+        sections.forEach(({ section }) => {
+            if (scrollProbe >= section.offsetTop) {
+                activeId = section.id;
+            }
+        });
+
+        setActiveLink(activeId);
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateActiveLink();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    window.addEventListener('resize', updateActiveLink);
+    window.addEventListener('load', updateActiveLink);
+
+    updateActiveLink();
+}
+
+function initPinnedHeroImage() {
+    if (AppState.heroImagePinInitialized) {
+        return;
+    }
+
+    const heroImageWrapper = document.querySelector('.hero-image-wrapper');
+    const homeSection = document.getElementById('home');
+    const aboutSection = document.getElementById('about');
+    const skillsSection = document.getElementById('skills');
+
+    if (!heroImageWrapper || !homeSection || !aboutSection || !skillsSection) {
+        return;
+    }
+
+    AppState.heroImagePinInitialized = true;
+    let ticking = false;
+
+    function clearPinnedState() {
+        heroImageWrapper.classList.remove('hero-image-pinned');
+        heroImageWrapper.style.removeProperty('left');
+        heroImageWrapper.style.removeProperty('width');
+        heroImageWrapper.style.removeProperty('top');
+        AppState.heroImagePinned = false;
+    }
+
+    function updatePinnedState() {
+        const isDesktop = window.innerWidth > 1024;
+        if (!isDesktop) {
+            clearPinnedState();
+            return;
+        }
+
+        const scrollY = window.scrollY || window.pageYOffset;
+        const homeTop = homeSection.offsetTop;
+        const shouldPin = scrollY >= homeTop;
+        if (!shouldPin) {
+            clearPinnedState();
+            return;
+        }
+
+        if (!heroImageWrapper.classList.contains('hero-image-pinned')) {
+            const wrapperRect = heroImageWrapper.getBoundingClientRect();
+            heroImageWrapper.style.left = `${wrapperRect.left}px`;
+            heroImageWrapper.style.width = `${wrapperRect.width + 200}px`;
+            heroImageWrapper.classList.add('hero-image-pinned');
+        }
+
+        const pinTop = Math.max(64, Math.round(window.innerHeight * 0.12));
+        const moveStart = aboutSection.offsetTop;
+        const moveDistance = Math.max(0, scrollY - moveStart);
+        const moveSpeed = 1;
+        const movedTop = pinTop - (moveDistance * moveSpeed);
+        const hideBuffer = 200;
+        const minTop = -(heroImageWrapper.offsetHeight + hideBuffer);
+        const nextTop = Math.max(minTop, movedTop);
+        heroImageWrapper.style.top = `${nextTop+150}px`;
+
+        AppState.heroImagePinned = true;
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updatePinnedState();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        clearPinnedState();
+        updatePinnedState();
+    });
+
+    updatePinnedState();
+}
+
+function initChatBolt() {
+    const widget = document.getElementById('chatBoltWidget');
+    const toggle = document.getElementById('chatBoltToggle');
+    const panel = document.getElementById('chatBoltPanel');
+    const closeBtn = document.getElementById('chatBoltClose');
+    const form = document.getElementById('chatBoltForm');
+    const input = document.getElementById('chatBoltInput');
+    const messages = document.getElementById('chatBoltMessages');
+
+    if (!widget || !toggle || !panel || !closeBtn || !form || !input || !messages) {
+        return;
+    }
+
+    function addMessage(text, type) {
+        const bubble = document.createElement('div');
+        bubble.className = `chat-msg ${type}`;
+        bubble.textContent = text;
+        messages.appendChild(bubble);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function getBotReply(rawText) {
+        const text = rawText.toLowerCase();
+
+        if (text.includes('skill') || text.includes('tech') || text.includes('stack')) {
+            return 'Sithembiso focuses on JavaScript, Angular, React, Node.js, Express, and MySQL, with strong UI/UX and automation experience.';
+        }
+
+        if (text.includes('experience') || text.includes('work') || text.includes('years')) {
+            return 'He has 5+ years of experience, including full-stack development at TBWA/SA with front-end, back-end, and automation workflows.';
+        }
+
+        if (text.includes('project') || text.includes('portfolio') || text.includes('build')) {
+            return 'You can check the Projects section for highlighted work, including e-commerce, creative automation tooling, and banner production platforms.';
+        }
+
+        if (text.includes('contact') || text.includes('email') || text.includes('phone') || text.includes('linkedin')) {
+            return 'Use the Contact section to reach out directly by email, phone, LinkedIn, or GitHub.';
+        }
+
+        if (text.includes('cv') || text.includes('resume')) {
+            return 'Use the Download CV button in the hero or contact area to get the latest resume.';
+        }
+
+        return 'Great question. You can ask about skills, experience, projects, contact details, or CV.';
+    }
+
+    function openPanel() {
+        widget.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        input.focus();
+    }
+
+    function closePanel() {
+        widget.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', () => {
+        if (widget.classList.contains('open')) {
+            closePanel();
+        } else {
+            openPanel();
+        }
+    });
+
+    closeBtn.addEventListener('click', closePanel);
+
+    document.addEventListener('click', (event) => {
+        if (!widget.contains(event.target)) {
+            closePanel();
+        }
+    });
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const question = input.value.trim();
+        if (!question) {
+            return;
+        }
+
+        addMessage(question, 'user');
+        input.value = '';
+
+        window.setTimeout(() => {
+            addMessage(getBotReply(question), 'bot');
+        }, 220);
+    });
+
+    addMessage('Hi, I am the portfolio assistant. Ask me about skills, experience, projects, or contact details.', 'bot');
 }
 
 let currentSlide = 0;

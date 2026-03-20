@@ -175,6 +175,14 @@
                 <div class="stat-number" data-count="5">0</div>
                 <div class="stat-label" data-text-en="Years Experience" data-text-ar="سنوات خبرة">Years Experience</div>
               </div>
+              <div class="stat-item">
+                <div class="stat-number" data-count="30">0</div>
+                <div class="stat-label" data-text-en="Projects Completed" data-text-ar="المشاريع المكتملة">Projects Completed</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number" data-count="40">0</div>
+                <div class="stat-label" data-text-en="Technologies" data-text-ar="التقنيات المستخدمة">Technologies</div>
+              </div>
             </div>
           </div>
         </div>
@@ -676,8 +684,11 @@
                 <div class="project-image">
                   <div class="project-overlay">
                     <div class="project-links">
-                      <a href="https://github.com/putitdigital/ecommerce-platform" target="_blank" rel="noopener noreferrer" aria-label="View e-commerce platform source code on GitHub">
-                        <h3><i class="fab fa-github"></i> View source on GitHub</h3>
+                      <a href="https://github.com/putitdigital/ecommerce-platform" class="project-link" title="View Project" target="_blank" rel="noopener noreferrer" aria-label="View e-commerce platform project details">
+                        <i class="fas fa-external-link-alt"></i>
+                      </a>
+                      <a href="https://github.com/putitdigital/ecommerce-platform" class="project-link" title="View Code" target="_blank" rel="noopener noreferrer" aria-label="View e-commerce platform source code">
+                        <i class="fab fa-github"></i>
                       </a>
                     </div>
                   </div>
@@ -702,8 +713,11 @@
                 <div class="project-image">
                   <div class="project-overlay">
                     <div class="project-links">
-                      <a href="https://github.com/putitdigital/ecommerce-platform-C-" target="_blank" rel="noopener noreferrer" aria-label="View ASP.NET e-commerce platform source code on GitHub">
-                        <h3><i class="fab fa-github"></i> View source on GitHub</h3>
+                      <a href="https://github.com/putitdigital/ecommerce-platform-C-" class="project-link" title="View Project" target="_blank" rel="noopener noreferrer" aria-label="View ASP.NET e-commerce platform project details">
+                        <i class="fas fa-external-link-alt"></i>
+                      </a>
+                      <a href="https://github.com/putitdigital/ecommerce-platform-C-" class="project-link" title="View Code" target="_blank" rel="noopener noreferrer" aria-label="View ASP.NET e-commerce platform source code">
+                        <i class="fab fa-github"></i>
                       </a>
                     </div>
                   </div>
@@ -875,6 +889,46 @@
     
   </main>
 
+  <div class="bottom-section-nav" aria-label="Section navigation">
+    <a href="#home" class="bottom-nav-link">Home</a>
+    <a href="#about" class="bottom-nav-link">About</a>
+    <a href="#skills" class="bottom-nav-link">Skills</a>
+    <a href="#experience" class="bottom-nav-link">Experience</a>
+    <a href="#projects" class="bottom-nav-link">Projects</a>
+    <a href="#contact" class="bottom-nav-link">Contact</a>
+  </div>
+
+  <div class="chat-bolt-widget" id="chatBoltWidget">
+    <button class="chat-bolt-toggle" id="chatBoltToggle" type="button" aria-expanded="false" aria-controls="chatBoltPanel" aria-label="Open chat assistant">
+      <i class="fas fa-comment-dots" aria-hidden="true"></i>
+    </button>
+
+    <section class="chat-bolt-panel" id="chatBoltPanel" aria-label="Ask about me chat">
+      <header class="chat-bolt-header">
+        <h3 class="chat-bolt-title">Ask About Me</h3>
+        <button class="chat-bolt-close" id="chatBoltClose" type="button" aria-label="Close chat">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <div class="chat-bolt-messages" id="chatBoltMessages"></div>
+
+      <form class="chat-bolt-form" id="chatBoltForm">
+        <input
+          class="chat-bolt-input"
+          id="chatBoltInput"
+          type="text"
+          placeholder="Ask about skills, projects, or contact"
+          autocomplete="off"
+          maxlength="180"
+        >
+        <button class="chat-bolt-send" type="submit" aria-label="Send message">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </form>
+    </section>
+  </div>
+
   <!-- Footer -->
   <footer class="main-footer">
     <div class="footer-container">
@@ -883,7 +937,7 @@
           <p class="footer-text">
             <span class="footer-copyright">© 2026 Developer Portfolio</span>
             <span class="footer-divider">•</span>
-            <span class="footer-built">Built with passion and code</span>
+            <span class="footer-built">Built with passion, innovation, precision and creativity</span>
           </p>
           <p class="footer-author">
             <span class="footer-by-text" data-text-en="by" data-text-ar="بواسطة">by</span>
