@@ -598,6 +598,12 @@ img {
     animation-delay: 2s;
 }
 
+.badge-4 {
+    bottom: 8%;
+    left: -8%;
+    animation-delay: 1.5s;
+}
+
 @keyframes floatBadge {
     0%, 100% {
         transform: translateY(0);
