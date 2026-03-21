@@ -15,10 +15,93 @@ function initializeCoverLetterBuilder() {
     }
 
     setDefaultDate();
+    initBottomNavToggle();
+    initBottomNavActiveState();
     initWorkedSinceVisibility();
     bindLivePreview();
     bindActions();
     renderPreview();
+}
+
+function initBottomNavToggle() {
+    const toggle = document.getElementById('bottomNavToggle');
+    const nav = document.querySelector('.bottom-section-nav');
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.querySelectorAll('.bottom-nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            const label = document.querySelector('.bottom-nav-active-label');
+            if (label && link.getAttribute('href')?.startsWith('#')) {
+                label.textContent = link.textContent.trim();
+            }
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target)) {
+            nav.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
+
+function initBottomNavActiveState() {
+    const navLinks = Array.from(document.querySelectorAll('.bottom-nav-link')).filter((link) => {
+        const href = link.getAttribute('href') || '';
+        return href.startsWith('#');
+    });
+
+    if (navLinks.length === 0) {
+        return;
+    }
+
+    const sections = navLinks
+        .map((link) => {
+            const targetId = link.getAttribute('href');
+            const section = targetId ? document.querySelector(targetId) : null;
+            return section ? { link, section } : null;
+        })
+        .filter(Boolean);
+
+    if (sections.length === 0) {
+        return;
+    }
+
+    function setActiveLink(activeSectionId) {
+        sections.forEach(({ link, section }) => {
+            const isActive = section.id === activeSectionId;
+            link.classList.toggle('is-active', isActive);
+            if (isActive) {
+                const label = document.querySelector('.bottom-nav-active-label');
+                if (label) label.textContent = link.textContent.trim();
+            }
+        });
+    }
+
+    function updateActiveLink() {
+        const scrollProbe = window.scrollY + (window.innerHeight * 0.35);
+        let activeId = sections[0].section.id;
+
+        sections.forEach(({ section }) => {
+            if (scrollProbe >= section.offsetTop) {
+                activeId = section.id;
+            }
+        });
+
+        setActiveLink(activeId);
+    }
+
+    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    window.addEventListener('resize', updateActiveLink);
+    updateActiveLink();
 }
 
 function setDefaultDate() {

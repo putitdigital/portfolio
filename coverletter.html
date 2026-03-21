@@ -7,17 +7,15 @@
     <link rel="stylesheet" href="css/coverletter.css">
 </head>
 <body>
-    <main class="builder-page">
-        <section class="hero">
-            <p class="hero-kicker">Career Toolkit</p>
+    <main class="builder-page" id="cl-top">
+        <section class="hero" id="cl-hero">
             <h1>Sithembiso Sangweni's Cover Letter Builder</h1>
             <p class="hero-copy">
                 Update company details in seconds and export a polished cover letter.
-                Use this page whenever date, role, or contact details change.
             </p>
         </section>
 
-        <section class="builder-grid">
+        <section class="builder-grid" id="cl-builder">
             <form id="coverLetterForm" class="panel form-panel" aria-label="Cover letter details">
                 <h2>Letter Details</h2>
 
@@ -71,12 +69,23 @@
                 </div>
             </form>
 
-            <article class="panel preview-panel" aria-live="polite">
+            <article class="panel preview-panel" aria-live="polite" id="cl-preview">
                 <h2>Live Preview</h2>
                 <div id="letterPreview" class="letter-preview"></div>
             </article>
         </section>
     </main>
+
+    <div class="bottom-section-nav" aria-label="Section navigation">
+        <button class="bottom-nav-toggle" id="bottomNavToggle" aria-expanded="false" aria-label="Toggle navigation menu">
+            <span aria-hidden="true">☰</span>
+            <span class="bottom-nav-active-label">Navigate</span>
+        </button>
+        <div class="bottom-nav-links" id="bottomNavLinks">
+            <a href="#cl-builder" class="bottom-nav-link">Cover letter</a>
+            <a href="index.html" class="bottom-nav-link">Portfolio</a>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC+yQ2l0S5nDquynjUTduVdJN9WewtG/XAIN5SK8wZsM+dAf5BgU984wgKLF6ig84y4GNzcRC44Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/coverletter.js"></script>
