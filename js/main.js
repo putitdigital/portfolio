@@ -18,6 +18,7 @@ function initializeApp() {
     initScrollEffects();
     initSmoothScroll();
     initBottomNavActiveState();
+    initBottomNavToggle();
     initPinnedHeroImage();
     initChatBolt();
     generateParticles();
@@ -649,6 +650,8 @@ function initBottomNavActiveState() {
 
             if (isActive) {
                 link.setAttribute('aria-current', 'page');
+                const label = document.querySelector('.bottom-nav-active-label');
+                if (label) label.textContent = link.textContent;
             } else {
                 link.removeAttribute('aria-current');
             }
@@ -683,6 +686,32 @@ function initBottomNavActiveState() {
     window.addEventListener('load', updateActiveLink);
 
     updateActiveLink();
+}
+
+function initBottomNavToggle() {
+    const toggle = document.getElementById('bottomNavToggle');
+    const nav = document.querySelector('.bottom-section-nav');
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = nav.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.querySelectorAll('.bottom-nav-link').forEach((link) => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target)) {
+            nav.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    });
 }
 
 function initPinnedHeroImage() {

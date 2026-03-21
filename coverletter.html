@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sithembiso Sangweni</title>
+    <link rel="stylesheet" href="css/coverletter.css">
+</head>
+<body>
+    <main class="builder-page">
+        <section class="hero">
+            <p class="hero-kicker">Career Toolkit</p>
+            <h1>Sithembiso Sangweni's Cover Letter Builder</h1>
+            <p class="hero-copy">
+                Update company details in seconds and export a polished cover letter.
+                Use this page whenever date, role, or contact details change.
+            </p>
+        </section>
+
+        <section class="builder-grid">
+            <form id="coverLetterForm" class="panel form-panel" aria-label="Cover letter details">
+                <h2>Letter Details</h2>
+
+                <div class="field-grid">
+                    <label>
+                        Date (Auto-filled)
+                        <input type="date" id="letterDate" readonly>
+                    </label>
+
+                    <label>
+                        Hiring Manager
+                        <input type="text" id="hiringManager" value="Hiring Manager" required>
+                    </label>
+
+                    <label>
+                        Position Title
+                        <input type="text" id="positionTitle" value="Full-Stack Developer" required>
+                    </label>
+
+                    <label>
+                        Company Name
+                        <input type="text" id="companyName" value="Company name" required>
+                    </label>
+
+                    <label>
+                        Years of Experience
+                        <input type="number" id="yearsExperience" min="0" value="3" required>
+                    </label>
+
+                    <label>
+                        Core Skills
+                        <input type="text" id="coreSkills" value="Java, JavaScript, and SQL Server" required>
+                    </label>
+
+                    <label>
+                        Current/Recent Company
+                        <input type="text" id="currentCompany" value="TBWA" required>
+                    </label>
+
+                    <label id="workedSinceField">
+                        Worked Since (Year)
+                        <input type="number" id="workedSince" min="2000" value="2020" required>
+                    </label>
+                </div>
+
+                <div class="actions">
+                    <div class="action-group">
+                        <h3 class="action-group-title">Cover Letter</h3>
+                        <button type="button" id="printPdfBtn" class="primary-btn">Download PDF</button>
+                    </div>
+                </div>
+            </form>
+
+            <article class="panel preview-panel" aria-live="polite">
+                <h2>Live Preview</h2>
+                <div id="letterPreview" class="letter-preview"></div>
+            </article>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC+yQ2l0S5nDquynjUTduVdJN9WewtG/XAIN5SK8wZsM+dAf5BgU984wgKLF6ig84y4GNzcRC44Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/coverletter.js"></script>
+</body>
+</html>
